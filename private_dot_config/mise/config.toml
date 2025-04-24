@@ -1,0 +1,31 @@
+[env]
+# Automatic virtualenv activate
+_.python.venv = { path = ".venv", create = false }
+
+[tasks]
+# Install all packages from Brewfile
+brew-install = "brew bundle --file=$HOME/Brewfile"
+
+brew-sync = '''
+  brew update && brew upgrade
+  brew bundle dump --force --file=$HOME/Brewfile
+  chezmoi add $HOME/Brewfile
+'''
+
+# Update Homebrew packages and sync with Chezmoi
+# Commit and push Brewfile changes (optional, if using Git)
+brew-commit = '''
+  chezmoi cd
+  git add .
+  git commit -m "Update Brewfile $(date '+%Y-%m-%d')"
+  git push
+'''
+
+# Comprehensive sync task that chains the above
+brew-full-sync = { depends = ["brew-sync", "brew-commit"] }
+
+# Check what would be installed/removed
+brew-check = "brew bundle check --verbose --file=$HOME/Brewfile"
+
+# Clean packages not in Brewfile
+brew-cleanup = "brew bundle cleanup --file=$HOME/Brewfile"
