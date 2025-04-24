@@ -1,5 +1,4 @@
 tap "dart-lang/dart"
-tap "homebrew/services"
 tap "koekeishiya/formulae"
 tap "sass/sass"
 tap "epk/epk"
