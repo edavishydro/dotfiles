@@ -1,0 +1,85 @@
+source ~/git-flow-completion.zsh
+
+source ~/antigen.zsh
+
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundle git
+antigen bundle heroku
+antigen bundle pip
+antigen bundle lein
+antigen bundle command-not-found
+
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# antigen theme spaceship-prompt/spaceship-prompt
+
+# Tell Antigen that you're done.
+antigen apply
+
+
+eval "$(starship init zsh)"
+
+function ds_int {
+  ssh -i "~/.ssh/id_rsa" ubuntu@52.33.226.77
+}
+
+function ds_prod {
+  ssh -i "~/.ssh/id_rsa" ubuntu@44.225.245.127
+}
+
+function da_serv {
+  ssh -i "~/.ssh/id_rsa" edward@35.82.90.14
+}
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/edward.davis/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/edward.davis/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/edward.davis/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/edward.davis/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.11.7/bin/python"
+export PATH="$HOME/.poetry/bin:$PATH"
+
+CFLAGS=-I/include 
+LDFLAGS=-L/lib%
+export CPATH=`xcrun --show-sdk-path`/usr/include
+export CC=/usr/bin/clang
+export CXX=/usr/bin/clang++
+export CLOUDSDK_PYTHON=/Users/edward.davis/.pyenv/shims/python3
+
+# export PATH="$HOME/homebrew/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+
+eval "$(pyenv init -)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/edward.davis/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/edward.davis/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/edward.davis/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/edward.davis/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Created by `pipx` on 2024-02-16 17:40:17
+export PATH="$PATH:/Users/edward.davis/.local/bin"
+eval "$(mise activate zsh)"
+
+# pnpm
+export PNPM_HOME="/Users/edward.davis/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
