@@ -23,32 +23,6 @@ antigen apply
 
 eval "$(starship init zsh)"
 
-function ds_int {
-  ssh -i "~/.ssh/id_rsa" ubuntu@52.33.226.77
-}
-
-function ds_prod {
-  ssh -i "~/.ssh/id_rsa" ubuntu@44.225.245.127
-}
-
-function da_serv {
-  ssh -i "~/.ssh/id_rsa" edward@35.82.90.14
-}
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/edward.davis/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/edward.davis/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/edward.davis/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/edward.davis/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.11.7/bin/python"
 export PATH="$HOME/.poetry/bin:$PATH"
@@ -83,3 +57,4 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+export PATH="/opt/homebrew/bin:$PATH"
