@@ -1,0 +1,5 @@
+{{- if ne .chezmoi.hostname "work-laptop" }}
+.wpuserrc
+{{- else if ne .chezmoi.hostname "Edwards-MacBook-Air" }}
+.zshrc
+{{- end}}

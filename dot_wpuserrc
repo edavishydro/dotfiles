@@ -20,7 +20,41 @@ antigen apply
 
 export PATH="/opt/homebrew/bin:$PATH"
 
-eval "$(starship init zsh)"
+
+# Disable Powerlevel10k and any other prompt system
+{
+  # Unset p10k configuration
+  unfunction -m 'p10k*' 2>/dev/null
+  
+  # Clear any prompt hooks
+  precmd_functions=()
+  preexec_functions=()
+  
+  # Disable any active prompt theme
+  prompt off 2>/dev/null
+  
+  # Undefine any prompt_* functions that might be called
+  for func in ${(k)functions}; do
+    if [[ "$func" == prompt_* ]]; then
+      unfunction "$func" 2>/dev/null
+    fi
+  done
+  
+  # Reset prompt-related variables
+  prompt_opts=()
+  RPS1=''
+  RPS2=''
+  
+  # Set basic prompt temporarily
+  PS1='%n@%m:%~$ '
+}
+
+# Now initialize Starship
+if command -v starship &>/dev/null; then
+  eval "$(starship init zsh)"
+else 
+  echo "Starship is not installed. Please install it first: https://starship.rs/"
+fi
 
 
 export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.11.7/bin/python"
@@ -47,6 +81,11 @@ if [ -f '/Users/edward.davis/google-cloud-sdk/completion.zsh.inc' ]; then . '/Us
 
 # Created by `pipx` on 2024-02-16 17:40:17
 export PATH="$PATH:/Users/edward.davis/.local/bin"
+
+#
+# Executes commands at the start of an interactive session.
+#
+
 eval "$(mise activate zsh)"
 
 # pnpm

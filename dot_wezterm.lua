@@ -18,7 +18,7 @@ config.color_scheme = "Everforest Dark Medium"
 
 config.font = wezterm.font("SFMono Nerd Font", { weight = "Regular" })
 -- config.font = wezterm.font("Dank Mono", { weight = "Regular" })
-config.line_height = 1.2
+config.line_height = 1.21
 config.font_size = 16.0
 
 return config
